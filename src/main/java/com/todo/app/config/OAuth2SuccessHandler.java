@@ -45,8 +45,11 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         // Generate JWT
         String token = JwtUtil.generate(email);
 
-        // Redirect to frontend dashboard with token
-        String targetUrl = "http://localhost:5173/dashboard?token=" + token;
+        // Redirect to frontend: use FRONTEND_URL env var (set on Render), fallback to localhost for dev
+        String frontendUrl = System.getenv("FRONTEND_URL") != null
+                ? System.getenv("FRONTEND_URL")
+                : "http://localhost:5173";
+        String targetUrl = frontendUrl + "/dashboard?token=" + token;
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
 }
