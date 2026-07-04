@@ -29,7 +29,3 @@ services:
         value: 2205
       - key: MYSQL_DATABASE
         value: todo
-    disk:
-      name: mysql-data
-      mountPath: /var/lib/mysql
-      sizeGB: 1
