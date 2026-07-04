@@ -21,7 +21,8 @@ services:
   - type: pserv
     name: mysql
     runtime: image
-    image: mysql:8.0
+    image:
+          url: mysql:8.0
     plan: free
     envVars:
       - key: MYSQL_ROOT_PASSWORD
