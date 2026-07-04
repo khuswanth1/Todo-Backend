@@ -6,14 +6,29 @@ services:
     plan: free
     envVars:
       - key: DB_URL
-        sync: false
+        value: jdbc:mysql://mysql:3306/todo?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       - key: DB_USERNAME
-        sync: false
+        value: root
       - key: DB_PASSWORD
-        sync: false
+        value: 2205
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: GOOGLE_CLIENT_SECRET
         sync: false
       - key: GOOGLE_FONTS_API_KEY
         value: AIzaSyDkSoKtrV_WGBXdzqw_hHhAxITX8RAqlew
+
+  - type: pserv
+    name: mysql
+    runtime: image
+    image: mysql:8.0
+    plan: free
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: 2205
+      - key: MYSQL_DATABASE
+        value: todo
+    disk:
+      name: mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 1
