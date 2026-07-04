@@ -25,6 +25,8 @@ services:
         fromDatabase:
           name: todo-db
           property: password
+            - key: HIBERNATE_DIALECT
+                    value: org.hibernate.dialect.PostgreSQLDialect
       - key: GOOGLE_CLIENT_ID
         sync: false
       - key: GOOGLE_CLIENT_SECRET
